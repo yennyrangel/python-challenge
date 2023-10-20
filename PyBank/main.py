@@ -61,5 +61,22 @@ print(f'Total Months: {total_number_of_months+1}')   # because we skip a row whe
 print(f'Total: ${total_profit_losses}')
 print(f'Average Change: ${average_change}')
 print(f'Greatest Increase in Profits: {greatest_increase_date} (${greatest_increase_amount})')
-print(f'\nGreatest Decrease in Profits: {greatest_decrease_date} (${greatest_decrease_amount})')
-   
+print(f'\nGreatest Decrease in Profits: {greatest_decrease_date} (${greatest_decrease_amount})') 
+
+###################################################################################################################
+####################################### PRINT TXT #################################################################
+
+# save the output file path    
+output_file = os.path.join("Analysis", "output.txt")
+
+# open the output file, create a header row, and then write the zipped object to the csv
+with open(output_file, "w", newline="") as datafile:
+    writer = csv.writer(datafile)
+
+    writer.writerow(['Financial Analysis'])
+    writer.writerow(['------------------------------------'])
+    writer.writerow(['Total Months:'])
+    writer.writerow(['Total:'])
+    writer.writerow(['Average Change:'])
+    writer.writerow(['Greatest Increase in Profits:'])
+    writer.writerow(['Greatest Decrease in Profits:'])
