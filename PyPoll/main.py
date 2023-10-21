@@ -33,40 +33,40 @@ with open(csvpath, newline='') as csvfile:
             candidates[candidate] += 1
 
 # Print the results
-print("Election Results")
-print("-------------------------")
-print(f"Total Votes: {total_votes}")
-print("-------------------------")
+print("\nElection Results")
+print("\n-------------------------")
+print(f"\nTotal Votes: {total_votes}")
+print("\n-------------------------")
 
 # Calculate and print the percentage of votes for each candidate
 for candidate, votes in candidates.items():
     percentage = (votes / total_votes) * 100
-    print(f"{candidate}: {percentage:.3f}% ({votes})")
+    print(f"\n{candidate}: {percentage:.3f}% ({votes})")
 
-print("-------------------------")
+print("\n-------------------------")
 
 # Find the winner
 winner = max(candidates, key=candidates.get)
 
 # Print winner
-print(f"Winner: {winner}")
-print("-------------------------")
+print(f"\nWinner: {winner}")
+print("\n-------------------------")
 
 ###################################################################################################################
 ####################################### PRINT TXT #################################################################
 
 # save the output file path    
-output_file = os.path.join("Analysis", "output.txt")
+output_file = os.path.join("Analysis", "Election_Results.txt")
 
 # open the output file, create a header row, and then write the zipped object to the csv
 with open(output_file, "w", newline="") as file:
-    file.write("Election Results\n")
-    file.write("--------------------------------\n")
-    file.write(f"Total Votes: {total_votes}\n")
-    file.write("--------------------------------\n")
-    #for candidate, votes in votes in candidates.items():
-        #percentage = (votes / total_votes) * 100
-        #file.write(f"{candidate}: {percentage:.3f}% ({votes})\n")
-    file.write("--------------------------------\n")
-    file.write(f"Winner: {winner}\n")
-    file.write("--------------------------------\n")
+    file.write("\nElection Results\n")
+    file.write("\n--------------------------------\n")
+    file.write(f"\nTotal Votes: {total_votes}\n")
+    file.write("\n--------------------------------\n")
+    for candidate, votes in candidates.items():
+        percentage = (votes / total_votes) * 100
+        file.write(f"\n{candidate}: {percentage:.3f}% ({votes})\n")  
+    file.write("\n--------------------------------\n")
+    file.write(f"\nWinner: {winner}\n")
+    file.write("\n--------------------------------\n")
