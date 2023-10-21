@@ -15,6 +15,7 @@ greatest_increase_date = ""
 greatest_increase_amount = 0
 greatest_decrease_date = ""
 greatest_decrease_amount = 0
+number_of_months_previous_profit_losses = 0
 
 # Open and read the CSV file
 with open(csvpath) as csvfile:
@@ -29,8 +30,11 @@ with open(csvpath) as csvfile:
     for row in csvreader:
         date, profit_losses = row
         profit_losses = int(profit_losses)
-    
-        # Calculate changes in profit/loss and total number months
+        
+        # Calculate total number months
+        total_number_of_months += 1
+
+        # Calculate changes in profit/loss 
         if previous_profit_losses is not None:
             change = profit_losses - previous_profit_losses
 
@@ -43,8 +47,8 @@ with open(csvpath) as csvfile:
                 greatest_decrease_amount = change
 
             total_changes += change
-            total_number_of_months += 1
-
+            number_of_months_previous_profit_losses += 1
+      
         # Update previous profit/loss for the next iteration
         previous_profit_losses = profit_losses
 
@@ -52,12 +56,12 @@ with open(csvpath) as csvfile:
         total_profit_losses += profit_losses
 
 # Calculate the average change
-average_change = round(total_changes / total_number_of_months,2)
+average_change = round(total_changes / number_of_months_previous_profit_losses,2)
 
 # Print the results
 print(f'\nFinancial Analysis')
 print(f'\n-----------------------------------------')
-print(f'\nTotal Months: {total_number_of_months+1}')   # because we skip a row when previous_profit_losses = None
+print(f'\nTotal Months: {total_number_of_months}')   
 print(f'\nTotal: ${total_profit_losses}')
 print(f'\nAverage Change: ${average_change}')
 print(f'\nGreatest Increase in Profits: {greatest_increase_date} (${greatest_increase_amount})')
@@ -73,7 +77,7 @@ output_file = os.path.join("Analysis", "Financial_Analysis.txt")
 with open(output_file, "w", newline="") as file:
     file.write("\nFinancial Analysis\n")
     file.write("\n--------------------------------\n")
-    file.write(f"\nTotal Months: {total_number_of_months+1}\n")
+    file.write(f"\nTotal Months: {total_number_of_months}\n")
     file.write(f"\nTotal: ${total_profit_losses}\n")
     file.write(f"\nAverage Change: ${average_change}\n")
     file.write(f"\nGreatest Increase in Profits: {greatest_increase_date} (${greatest_increase_amount})\n")
