@@ -51,3 +51,22 @@ winner = max(candidates, key=candidates.get)
 # Print winner
 print(f"Winner: {winner}")
 print("-------------------------")
+
+###################################################################################################################
+####################################### PRINT TXT #################################################################
+
+# save the output file path    
+output_file = os.path.join("Analysis", "output.txt")
+
+# open the output file, create a header row, and then write the zipped object to the csv
+with open(output_file, "w", newline="") as file:
+    file.write("Election Results\n")
+    file.write("--------------------------------\n")
+    file.write(f"Total Votes: {total_votes}\n")
+    file.write("--------------------------------\n")
+    #for candidate, votes in votes in candidates.items():
+        #percentage = (votes / total_votes) * 100
+        #file.write(f"{candidate}: {percentage:.3f}% ({votes})\n")
+    file.write("--------------------------------\n")
+    file.write(f"Winner: {winner}\n")
+    file.write("--------------------------------\n")

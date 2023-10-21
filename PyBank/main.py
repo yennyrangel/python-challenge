@@ -55,28 +55,26 @@ with open(csvpath) as csvfile:
 average_change = round(total_changes / total_number_of_months,2)
 
 # Print the results
-print(f'Financial Analysis')
-print(f'-----------------------------------------')
-print(f'Total Months: {total_number_of_months+1}')   # because we skip a row when previous_profit_losses = None
-print(f'Total: ${total_profit_losses}')
-print(f'Average Change: ${average_change}')
-print(f'Greatest Increase in Profits: {greatest_increase_date} (${greatest_increase_amount})')
+print(f'\nFinancial Analysis')
+print(f'\n-----------------------------------------')
+print(f'\nTotal Months: {total_number_of_months+1}')   # because we skip a row when previous_profit_losses = None
+print(f'\nTotal: ${total_profit_losses}')
+print(f'\nAverage Change: ${average_change}')
+print(f'\nGreatest Increase in Profits: {greatest_increase_date} (${greatest_increase_amount})')
 print(f'\nGreatest Decrease in Profits: {greatest_decrease_date} (${greatest_decrease_amount})') 
 
 ###################################################################################################################
 ####################################### PRINT TXT #################################################################
 
 # save the output file path    
-output_file = os.path.join("Analysis", "output.txt")
+output_file = os.path.join("Analysis", "Financial_Analysis.txt")
 
 # open the output file, create a header row, and then write the zipped object to the csv
-with open(output_file, "w", newline="") as datafile:
-    writer = csv.writer(datafile)
-
-    writer.writerow(['Financial Analysis'])
-    writer.writerow(['------------------------------------'])
-    writer.writerow(['Total Months:'])
-    writer.writerow(['Total:'])
-    writer.writerow(['Average Change:'])
-    writer.writerow(['Greatest Increase in Profits:'])
-    writer.writerow(['Greatest Decrease in Profits:'])
+with open(output_file, "w", newline="") as file:
+    file.write("\nFinancial Analysis\n")
+    file.write("\n--------------------------------\n")
+    file.write(f"\nTotal Months: {total_number_of_months+1}\n")
+    file.write(f"\nTotal: ${total_profit_losses}\n")
+    file.write(f"\nAverage Change: ${average_change}\n")
+    file.write(f"\nGreatest Increase in Profits: {greatest_increase_date} (${greatest_increase_amount})\n")
+    file.write(f"\nGreatest Decrease in Profits: {greatest_decrease_date} (${greatest_decrease_amount})\n")
